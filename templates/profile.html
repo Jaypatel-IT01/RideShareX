@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | RideShareX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+                Ride<span>ShareX</span>
+            </a>
+
+
+            <div class="nav-actions">
+
+                <a href="/dashboard"
+                   class="back-home">
+
+                    Dashboard
+
+                </a>
+
+
+                <a href="/logout"
+                   class="btn btn-primary">
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- PROFILE -->
+
+    <main class="profile-section">
+
+        <div class="profile-container">
+
+
+            <div class="page-heading">
+
+                <p class="dashboard-label">
+                    MY ACCOUNT
+                </p>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    Manage your personal information
+                    and RideShareX account.
+                </p>
+
+            </div>
+
+
+
+            <!-- PROFILE CARD -->
+
+            <div class="profile-card">
+
+
+                <!-- PROFILE HEADER -->
+
+                <div class="profile-header">
+
+                    <div class="profile-avatar">
+
+                        {{ user.name[0] | upper }}
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            {{ user.name }}
+                        </h2>
+
+                        <p>
+                            RideShareX Member
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EDIT PROFILE FORM -->
+
+                <form
+                    action="/profile"
+                    method="POST"
+                    class="profile-form">
+
+
+                    <div class="form-section-title">
+
+                        <span>
+                            01
+                        </span>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                    </div>
+
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="{{ user.name }}"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="{{ user.email }}"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value="{{ user.phone or '' }}"
+                            placeholder="Enter your phone number"
+                        >
+
+                    </div>
+
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary profile-save-btn">
+
+                        Save Changes →
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

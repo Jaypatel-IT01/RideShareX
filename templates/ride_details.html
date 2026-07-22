@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Ride Details | RideShareX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+<!-- NAVBAR -->
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+            Ride<span>ShareX</span>
+        </a>
+
+
+        <div class="nav-actions">
+
+            <a href="/dashboard"
+               class="back-home">
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/logout"
+               class="btn btn-primary">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- RIDE DETAILS -->
+
+<main class="ride-details-section">
+
+    <div class="ride-details-container">
+
+
+        <!-- BACK -->
+
+        <a href="/find-ride"
+           class="back-link">
+
+            ← Back to Find Ride
+
+        </a>
+
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="ride-details-header">
+
+            <div>
+
+                <p class="dashboard-label">
+                    RIDE DETAILS
+                </p>
+
+                <h1>
+                    {{ ride.from_location }}
+                    →
+                    {{ ride.to_location }}
+                </h1>
+
+                <p>
+                    Review the ride information
+                    before joining.
+                </p>
+
+            </div>
+
+
+            <div class="ride-available-badge">
+
+                🟢 Available
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MAIN GRID -->
+
+        <div class="ride-details-grid">
+
+
+            <!-- LEFT -->
+
+            <div class="ride-details-main">
+
+
+                <!-- ROUTE CARD -->
+
+                <div class="details-card">
+
+                    <h2>
+                        Your Journey
+                    </h2>
+
+
+                    <div class="journey-route">
+
+
+                        <div class="journey-point">
+
+                            <div class="journey-icon">
+                                📍
+                            </div>
+
+                            <div>
+
+                                <small>
+                                    PICKUP LOCATION
+                                </small>
+
+                                <h3>
+                                    {{ ride.from_location }}
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="journey-line">
+                        </div>
+
+
+                        <div class="journey-point">
+
+                            <div class="journey-icon">
+                                🏁
+                            </div>
+
+                            <div>
+
+                                <small>
+                                    DESTINATION
+                                </small>
+
+                                <h3>
+                                    {{ ride.to_location }}
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RIDE INFO -->
+
+                <div class="details-card">
+
+                    <h2>
+                        Ride Information
+                    </h2>
+
+
+                    <div class="ride-details-info-grid">
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                📅 Travel Date
+                            </span>
+
+                            <strong>
+                                {{ ride.travel_date }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                🕐 Departure Time
+                            </span>
+
+                            <strong>
+                                {{ ride.travel_time }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                💺 Available Seats
+                            </span>
+
+                            <strong>
+                                {{ ride.available_seats }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                💰 Price Per Seat
+                            </span>
+
+                            <strong class="detail-price">
+
+                                ₹{{ ride.price }}
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DRIVER -->
+
+                <div class="details-card">
+
+                    <h2>
+                        About the Driver
+                    </h2>
+
+
+                    <div class="driver-profile">
+
+                        <div class="driver-avatar">
+
+                            {{ ride.name[0] | upper }}
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                {{ ride.name }}
+                            </h3>
+
+                            <p>
+                                RideShareX Driver
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RIGHT SIDEBAR -->
+
+            <aside class="ride-details-sidebar">
+
+
+                <!-- JOIN CARD -->
+
+                <div class="join-ride-card">
+
+                    <p class="dashboard-label">
+                        RESERVE YOUR SEAT
+                    </p>
+
+
+                    <h2>
+                        Ready to Ride?
+                    </h2>
+
+
+                    <p>
+                        Join this ride and share
+                        your journey with others.
+                    </p>
+
+
+                    {% if ride.available_seats > 0 %}
+
+
+                    <form
+                        action="{{ url_for(
+                            'join_ride',
+                            ride_id=ride.id
+                        ) }}"
+                        method="POST">
+
+
+                        <label for="seats">
+                            Number of Seats
+                        </label>
+
+
+                        <select
+                            name="seats"
+                            id="seats"
+                            required>
+
+
+                            {% for i in range(
+                                1,
+                                ride.available_seats + 1
+                            ) %}
+
+                            <option value="{{ i }}">
+
+                                {{ i }}
+
+                                {% if i == 1 %}
+                                    Seat
+                                {% else %}
+                                    Seats
+                                {% endif %}
+
+                            </option>
+
+                            {% endfor %}
+
+
+                        </select>
+
+
+                        <div class="booking-price">
+
+                            <span>
+                                Total Price
+                            </span>
+
+                            <strong>
+
+                                ₹{{ ride.price }}
+
+                            </strong>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary join-btn">
+
+                            Join This Ride →
+
+                        </button>
+
+
+                    </form>
+
+
+                    {% else %}
+
+
+                    <div class="ride-full">
+
+                        ❌
+
+                        This ride is full.
+
+                    </div>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+</body>
+
+</html>

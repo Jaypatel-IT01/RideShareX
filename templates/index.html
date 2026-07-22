@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RideShareX | Share Your Ride</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+                Ride<span>Share</span>X
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+
+                <a href="/" class="active">Home</a>
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="#why-us">
+                    Why RideShareX
+                </a>
+
+                <a href="#safety">
+                    Safety
+                </a>
+
+                <a href="#contact" class="nav-link">Contact</a>
+
+            </nav>
+
+            <div class="nav-buttons">
+
+                <a href="/login" class="btn btn-secondary">
+                    Login
+                </a>
+
+                <a href="/register" class="btn btn-primary">
+                    Sign Up
+                </a>
+
+            </div>
+
+            <button class="menu-toggle"
+                    id="menuToggle">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <span class="hero-badge">
+                        🚗 Smart & Affordable Carpooling
+                    </span>
+
+                    <h1>
+                        Your Ride.
+                        <span>Your Route.</span>
+                        Your Community.
+                    </h1>
+
+                    <p>
+                        Connect with people traveling your way,
+                        share your journey, save money and reduce
+                        traffic together.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#find-ride"
+                        class="btn btn-primary btn-large">
+                            Find a Ride →
+                        </a>
+
+                        <a href="#offer-ride"
+                        class="btn btn-light btn-large">
+                            Offer a Ride
+                        </a>
+
+                    </div>
+
+                    <div class="hero-trust">
+
+                        <div class="trust-item">
+                            <strong>1K+</strong>
+                            <span>Rides Shared</span>
+                        </div>
+
+                        <div class="trust-item">
+                            <strong>500+</strong>
+                            <span>Happy Users</span>
+                        </div>
+
+                        <div class="trust-item">
+                            <strong>20K+</strong>
+                            <span>KM Shared</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="floating-card card-top">
+
+                        <span class="card-icon">📍</span>
+
+                        <div>
+                            <strong>Route Matched</strong>
+                            <small>95% Match</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="carpool-visual">
+
+                        <div class="road-line"></div>
+
+                        <div class="car">
+                            🚗
+                        </div>
+
+                        <div class="location location-start">
+                            <span>📍</span>
+                            <small>Pickup</small>
+                        </div>
+
+                        <div class="location location-end">
+                            <span>🏢</span>
+                            <small>Office</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card card-bottom">
+
+                        <span class="card-icon">💰</span>
+
+                        <div>
+                            <strong>Save on Travel</strong>
+                            <small>Share your ride</small>
+                        </div>
+
+                    </div>
+
+                </div>
+                
+            </div>
+
+        </section>
+
+
+        <!-- FIND YOUR RIDE -->
+
+        <section class="search-section" id="find-ride">
+
+            <div class="container">
+
+                <div class="search-card">
+
+                    <div class="search-header">
+
+                        <div>
+                            <span class="section-label">
+                                FIND YOUR RIDE
+                            </span>
+
+                            <h2>
+                                Where are you going?
+                            </h2>
+
+                            <p>
+                                Find people traveling on the same route
+                                and share your journey.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <form class="ride-search-form" action="/search-rides" method="GET">
+
+                        <!-- FROM -->
+
+                        <div class="input-group">
+
+                            <label>
+                                Leaving From
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    📍
+                                </span>
+
+                                <input
+                                    type="text"
+                                    name="from_location"
+                                    placeholder="Enter pickup location"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SWAP -->
+
+                        <button
+                            type="button"
+                            class="swap-button"
+                            title="Swap locations">
+                            ⇄
+                        </button>
+
+
+                        <!-- TO -->
+
+                        <div class="input-group">
+
+                            <label>
+                                Going To
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    📍
+                                </span>
+
+                                <input
+                                    type="text"
+                                    name="to_location"
+                                    placeholder="Enter destination"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DATE -->
+
+                        <div class="input-group">
+
+                            <label>
+                                Travel Date
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    📅
+                                </span>
+
+                               <input
+                                    type="date"
+                                    name="travel_date"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SEATS -->
+
+                        <div class="input-group">
+
+                            <label>
+                                Passengers
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span class="input-icon">
+                                    👤
+                                </span>
+
+                                <select>
+
+                                    <option>
+                                        1 Passenger
+                                    </option>
+
+                                    <option>
+                                        2 Passengers
+                                    </option>
+
+                                    <option>
+                                        3 Passengers
+                                    </option>
+
+                                    <option>
+                                        4 Passengers
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SEARCH BUTTON -->
+
+                        <button type="submit" class="btn btn-primary">
+                            Search Rides
+                        </button>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+<!-- RIDE OPTIONS -->
+
+<section class="ride-options-section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <span>
+                CHOOSE YOUR RIDE
+            </span>
+
+            <h2>
+                Travel Your Way
+            </h2>
+
+            <p>
+                Choose the ride option that works best
+                for your journey.
+            </p>
+
+        </div>
+
+
+        <div class="ride-options-grid">
+
+
+            <!-- CARPOOL -->
+
+            <div class="ride-option-card">
+
+                <div class="ride-option-icon">
+                    🚗
+                </div>
+
+                <h3>
+                    Carpool
+                </h3>
+
+                <p>
+                    Share a car with people traveling
+                    in the same direction.
+                </p>
+
+                <a href="#find-ride">
+                    Find a Carpool →
+                </a>
+
+            </div>
+
+
+            <!-- BIKE POOL -->
+
+            <div class="ride-option-card">
+
+                <div class="ride-option-icon">
+                    🏍️
+                </div>
+
+                <h3>
+                    Bike Pool
+                </h3>
+
+                <p>
+                    Share your bike journey and
+                    reduce your daily travel costs.
+                </p>
+
+                <a href="#find-ride">
+                    Find a Bike Pool →
+                </a>
+
+            </div>
+
+
+            <!-- CAB SHARE -->
+
+            <div class="ride-option-card">
+
+                <div class="ride-option-icon">
+                    🚕
+                </div>
+
+                <h3>
+                    Cab Share
+                </h3>
+
+                <p>
+                    Split your cab ride with people
+                    heading to the same destination.
+                </p>
+
+                <a href="#find-ride">
+                    Find a Cab Share →
+                </a>
+
+            </div>
+
+
+            <!-- CORPORATE -->
+
+            <div class="ride-option-card">
+
+                <div class="ride-option-icon">
+                    🏢
+                </div>
+
+                <h3>
+                    Corporate Commute
+                </h3>
+
+                <p>
+                    Make employee transportation
+                    smarter and more organized.
+                </p>
+
+                <a href="#find-ride">
+                    Explore Corporate →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- OFFER A RIDE -->
+
+<section class="offer-ride-section" id="offer-ride">
+
+    <div class="container offer-ride-container">
+
+        <div class="offer-ride-content">
+
+            <span class="section-label">
+                SHARE YOUR JOURNEY
+            </span>
+
+            <h2>
+                Have an Empty Seat?
+                <span>Share Your Ride.</span>
+            </h2>
+
+            <p>
+                Going somewhere? Offer your available seats
+                to people traveling in the same direction.
+                Save money, meet new people and make every
+                journey more meaningful.
+            </p>
+
+            <div class="offer-benefits">
+
+                <div class="offer-benefit">
+                    <span>💰</span>
+                    <div>
+                        <strong>Save on Fuel</strong>
+                        <small>Share your travel expenses.</small>
+                    </div>
+                </div>
+
+                <div class="offer-benefit">
+                    <span>🌱</span>
+                    <div>
+                        <strong>Reduce Pollution</strong>
+                        <small>Put fewer vehicles on the road.</small>
+                    </div>
+                </div>
+
+                <div class="offer-benefit">
+                    <span>🤝</span>
+                    <div>
+                        <strong>Meet People</strong>
+                        <small>Connect with your community.</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="#offer-form"
+               class="btn btn-primary btn-large">
+                Offer a Ride →
+            </a>
+
+        </div>
+
+
+        <div class="offer-ride-card">
+
+            <div class="offer-card-header">
+
+                <div class="offer-card-icon">
+                    🚗
+                </div>
+
+                <div>
+                    <h3>
+                        Post Your Ride
+                    </h3>
+
+                    <p>
+                        Tell us about your journey.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form id="offer-form"
+                  class="offer-form">
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Leaving From
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Pickup location"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Going To
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Destination"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>
+                            Departure Time
+                        </label>
+
+                        <input
+                            type="time"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label>
+                            Available Seats
+                        </label>
+
+                        <select>
+
+                            <option>
+                                1 Seat
+                            </option>
+
+                            <option>
+                                2 Seats
+                            </option>
+
+                            <option>
+                                3 Seats
+                            </option>
+
+                            <option>
+                                4 Seats
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>
+                            Cost Per Passenger
+                        </label>
+
+                        <input
+                            type="number"
+                            placeholder="₹ Estimated cost"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary offer-submit">
+
+                    Post My Ride →
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- WHY RIDESHAREX -->
+
+        <section class="why-section" id="why-us">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>
+                        WHY RIDESHAREX
+                    </span>
+
+                    <h2>
+                        More Than Just a Ride
+                    </h2>
+
+                    <p>
+                        RideShareX makes everyday travel smarter,
+                        more affordable and better for the environment.
+                    </p>
+
+                </div>
+
+
+                <div class="why-grid">
+
+
+                    <!-- SAVE MONEY -->
+
+                    <div class="why-card">
+
+                        <div class="why-card-top">
+
+                            <div class="why-icon">
+                                💰
+                            </div>
+
+                            <span class="why-number">
+                                01
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Save Money
+                        </h3>
+
+                        <p>
+                            Share your travel expenses with other
+                            passengers and reduce the cost of your
+                            daily commute.
+                        </p>
+
+                        <div class="why-stat">
+                            <strong>Up to 50%</strong>
+                            <span>Travel Cost Savings</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- REDUCE TRAFFIC -->
+
+                    <div class="why-card">
+
+                        <div class="why-card-top">
+
+                            <div class="why-icon">
+                                🚦
+                            </div>
+
+                            <span class="why-number">
+                                02
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Reduce Traffic
+                        </h3>
+
+                        <p>
+                            Fewer cars on the road means less traffic
+                            congestion and shorter commuting times.
+                        </p>
+
+                        <div class="why-stat">
+                            <strong>2–4x</strong>
+                            <span>More People Per Vehicle</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- GO GREEN -->
+
+                    <div class="why-card">
+
+                        <div class="why-card-top">
+
+                            <div class="why-icon">
+                                🌱
+                            </div>
+
+                            <span class="why-number">
+                                03
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Go Green
+                        </h3>
+
+                        <p>
+                            Shared rides help reduce fuel consumption
+                            and contribute to a cleaner environment.
+                        </p>
+
+                        <div class="why-stat">
+                            <strong>Less CO₂</strong>
+                            <span>Lower Carbon Emissions</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUILD COMMUNITY -->
+
+                    <div class="why-card">
+
+                        <div class="why-card-top">
+
+                            <div class="why-icon">
+                                🤝
+                            </div>
+
+                            <span class="why-number">
+                                04
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Build Community
+                        </h3>
+
+                        <p>
+                            Connect with people from your community
+                            and make your daily journey more social.
+                        </p>
+
+                        <div class="why-stat">
+                            <strong>1,000+</strong>
+                            <span>Potential Connections</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- IMPACT STATISTICS -->
+
+                <div class="impact-section">
+
+                    <div class="impact-item">
+
+                        <strong>
+                            1K+
+                        </strong>
+
+                        <span>
+                            Rides Shared
+                        </span>
+
+                    </div>
+
+
+                    <div class="impact-divider"></div>
+
+
+                    <div class="impact-item">
+
+                        <strong>
+                            500+
+                        </strong>
+
+                        <span>
+                            Active Users
+                        </span>
+
+                    </div>
+
+
+                    <div class="impact-divider"></div>
+
+
+                    <div class="impact-item">
+
+                        <strong>
+                            20K+
+                        </strong>
+
+                        <span>
+                            KM Shared
+                        </span>
+
+                    </div>
+
+
+                    <div class="impact-divider"></div>
+
+
+                    <div class="impact-item">
+
+                        <strong>
+                            5K+
+                        </strong>
+
+                        <span>
+                            KG CO₂ Saved
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+
+        <section class="how-it-works-section" id="how-it-works">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>
+                        HOW IT WORKS
+                    </span>
+
+                    <h2>
+                        Your Journey Starts in 4 Simple Steps
+                    </h2>
+
+                    <p>
+                        RideShareX makes finding and sharing rides
+                        simple, quick and convenient.
+                    </p>
+
+                </div>
+
+
+                <div class="steps-container">
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="step-item">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-icon">
+                            🔍
+                        </div>
+
+                        <h3>
+                            Search
+                        </h3>
+
+                        <p>
+                            Enter your pickup location,
+                            destination and travel date.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-line"></div>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="step-item">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-icon">
+                            🎯
+                        </div>
+
+                        <h3>
+                            Find a Match
+                        </h3>
+
+                        <p>
+                            Discover people traveling
+                            on the same or similar route.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-line"></div>
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="step-item">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-icon">
+                            🤝
+                        </div>
+
+                        <h3>
+                            Connect
+                        </h3>
+
+                        <p>
+                            View ride details and connect
+                            with your fellow travelers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-line"></div>
+
+
+                    <!-- STEP 4 -->
+
+                    <div class="step-item">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <div class="step-icon">
+                            🚗
+                        </div>
+
+                        <h3>
+                            Ride
+                        </h3>
+
+                        <p>
+                            Meet at your pickup point
+                            and enjoy your shared journey.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- DRIVER FLOW -->
+
+                <div class="driver-flow">
+
+                    <div class="driver-flow-content">
+
+                        <span class="section-label">
+                            FOR DRIVERS
+                        </span>
+
+                        <h3>
+                            Have a Seat Available?
+                        </h3>
+
+                        <p>
+                            Post your journey, choose how many
+                            seats you have available and connect
+                            with passengers heading your way.
+                        </p>
+
+                        <a href="#offer-ride"
+                        class="btn btn-primary">
+
+                            Offer a Ride →
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="driver-flow-visual">
+
+                        <div class="driver-route">
+
+                            <div class="route-point">
+                                <span>📍</span>
+                                <small>Your Location</small>
+                            </div>
+
+                            <div class="route-dashed"></div>
+
+                            <div class="route-car">
+                                🚗
+                            </div>
+
+                            <div class="route-dashed"></div>
+
+                            <div class="route-point">
+                                <span>🏢</span>
+                                <small>Destination</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SAFETY & TRUST -->
+
+        <section class="safety-section" id="safety">
+
+            <div class="container">
+
+                <div class="safety-layout">
+
+                    <!-- LEFT CONTENT -->
+
+                    <div class="safety-content">
+
+                        <span class="section-label">
+                            YOUR SAFETY MATTERS
+                        </span>
+
+                        <h2>
+                            Ride With
+                            <span>Confidence.</span>
+                        </h2>
+
+                        <p>
+                            We believe every shared journey should be
+                            safe, comfortable and trustworthy. RideShareX
+                            is designed with features that help you make
+                            informed decisions before every ride.
+                        </p>
+
+
+                        <div class="safety-features">
+
+                            <!-- FEATURE 1 -->
+
+                            <div class="safety-feature">
+
+                                <div class="safety-icon">
+                                    ✓
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Verified Profiles
+                                    </h3>
+
+                                    <p>
+                                        Know who you're traveling with
+                                        before accepting a ride.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FEATURE 2 -->
+
+                            <div class="safety-feature">
+
+                                <div class="safety-icon">
+                                    ★
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Ratings & Reviews
+                                    </h3>
+
+                                    <p>
+                                        View ratings and feedback from
+                                        other members of the community.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FEATURE 3 -->
+
+                            <div class="safety-feature">
+
+                                <div class="safety-icon">
+                                    🔒
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Privacy Protected
+                                    </h3>
+
+                                    <p>
+                                        Your personal information stays
+                                        protected while using the platform.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FEATURE 4 -->
+
+                            <div class="safety-feature">
+
+                                <div class="safety-icon">
+                                    🚨
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        Emergency Support
+                                    </h3>
+
+                                    <p>
+                                        Get access to support when you
+                                        need help during your journey.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIGHT SAFETY CARD -->
+
+                    <div class="safety-visual">
+
+                        <div class="safety-main-card">
+
+                            <div class="shield-circle">
+                                🛡️
+                            </div>
+
+                            <h3>
+                                Your Journey,
+                                Our Priority.
+                            </h3>
+
+                            <p>
+                                Travel with people you can trust
+                                and enjoy a safer shared journey.
+                            </p>
+
+
+                            <div class="safety-checks">
+
+                                <div>
+                                    <span>✓</span>
+                                    Profile information
+                                </div>
+
+                                <div>
+                                    <span>✓</span>
+                                    Ride details
+                                </div>
+
+                                <div>
+                                    <span>✓</span>
+                                    Community ratings
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="safety-badge badge-one">
+
+                            🛡️
+                            Safe Community
+
+                        </div>
+
+
+                        <div class="safety-badge badge-two">
+
+                            ⭐
+                            Trusted Members
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SAFETY -->
+
+        <section class="safety-section"
+                 id="safety">
+
+            <div class="container safety-content">
+
+                <div>
+
+                    <span class="section-label">
+                        YOUR SAFETY MATTERS
+                    </span>
+
+                    <h2>
+                        Ride With Confidence
+                    </h2>
+
+                    <p>
+                        RideShareX is designed to make
+                        shared travel safer and more reliable.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            ✓ Verified user profiles
+                        </li>
+
+                        <li>
+                            ✓ Transparent ride details
+                        </li>
+
+                        <li>
+                            ✓ Easy reporting system
+                        </li>
+
+                        <li>
+                            ✓ Secure communication
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FINAL CTA -->
+
+        <section class="final-cta-section">
+
+            <div class="container">
+
+                <div class="final-cta">
+
+                    <div class="final-cta-content">
+
+                        <span class="section-label">
+                            START YOUR JOURNEY
+                        </span>
+
+                        <h2>
+                            Ready to Share
+                            <span>Your Journey?</span>
+                        </h2>
+
+                        <p>
+                            Find a ride, offer a seat and make your
+                            daily commute smarter, cheaper and greener.
+                        </p>
+
+                        <div class="cta-buttons">
+
+                            <a href="#find-ride"
+                            class="btn btn-primary btn-large">
+
+                                🔍 Find a Ride
+
+                            </a>
+
+                            <a href="#offer-ride"
+                            class="btn btn-light btn-large">
+
+                                🚗 Offer a Ride
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="cta-section">
+
+            <div class="container">
+
+                <h2>
+                    Ready to Share Your Ride?
+                </h2>
+
+                <p>
+                    Start your journey with RideShareX today.
+                </p>
+
+                <button class="btn btn-white">
+                    Get Started →
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+
+                <!-- BRAND -->
+
+                <div class="footer-brand">
+
+                    <a href="/" class="footer-logo">
+                        Ride<span>ShareX</span>
+                    </a>
+
+                    <p>
+                        Making everyday travel smarter,
+                        more affordable and better for
+                        our communities.
+                    </p>
+
+                    <div class="social-links">
+
+                        <a href="#" aria-label="Instagram">
+                            📷
+                        </a>
+
+                        <a href="#" aria-label="LinkedIn">
+                            in
+                        </a>
+
+                        <a href="#" aria-label="Twitter">
+                            𝕏
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PLATFORM -->
+
+                <div class="footer-column">
+
+                    <h3>
+                        Platform
+                    </h3>
+
+                    <a href="#find-ride">
+                        Find a Ride
+                    </a>
+
+                    <a href="#offer-ride">
+                        Offer a Ride
+                    </a>
+
+                    <a href="#how-it-works">
+                        How It Works
+                    </a>
+
+                    <a href="#safety">
+                        Safety
+                    </a>
+
+                </div>
+
+
+                <!-- COMPANY -->
+
+                <div class="footer-column">
+
+                    <h3>
+                        Company
+                    </h3>
+
+                    <a href="#why-us">
+                        About Us
+                    </a>
+
+                    <a href="#">
+                        Careers
+                    </a>
+
+                    <a href="#">
+                        Contact
+                    </a>
+
+                    <a href="#">
+                        Partner With Us
+                    </a>
+
+                </div>
+
+
+                <!-- SUPPORT -->
+
+                <div class="footer-column">
+
+                    <h3>
+                        Support
+                    </h3>
+
+                    <a href="#">
+                        Help Center
+                    </a>
+
+                    <a href="#">
+                        FAQs
+                    </a>
+
+                    <a href="#">
+                        Terms & Conditions
+                    </a>
+
+                    <a href="#">
+                        Privacy Policy
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 RideShareX.
+                    All rights reserved.
+                </p>
+
+                <p>
+                    Built for smarter shared mobility.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="{{ url_for('static',
+             filename='js/script.js') }}">
+    </script>
+
+</body>
+
+</html>

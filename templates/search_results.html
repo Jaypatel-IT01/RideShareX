@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Search Results | RideShareX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+                Ride<span>ShareX</span>
+            </a>
+
+
+            <div class="nav-actions">
+
+                <a href="/dashboard"
+                   class="back-home">
+
+                    Dashboard
+
+                </a>
+
+
+                <a href="/logout"
+                   class="btn btn-primary">
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- SEARCH RESULTS -->
+
+    <main class="search-results-section">
+
+        <div class="search-results-container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="results-header">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        RIDE SEARCH
+                    </p>
+
+                    <h1>
+                        Available Rides
+                    </h1>
+
+                    <p>
+
+                        Showing rides from
+
+                        <strong>
+                            {{ from_location }}
+                        </strong>
+
+                        to
+
+                        <strong>
+                            {{ to_location }}
+                        </strong>
+
+                    </p>
+
+                    <p>
+
+                        📅
+
+                        {{ travel_date }}
+
+                    </p>
+
+                </div>
+
+
+                <a href="/find-ride"
+                   class="btn btn-secondary">
+
+                    ← Modify Search
+
+                </a>
+
+            </div>
+
+
+
+            <!-- RESULTS -->
+
+            {% if rides %}
+
+
+                <div class="results-count">
+
+                    <strong>
+                        {{ rides|length }}
+                    </strong>
+
+                    ride(s) found
+
+                </div>
+
+
+
+                <div class="rides-results-list">
+
+
+                    {% for ride in rides %}
+
+
+                    <!-- RIDE CARD -->
+
+                    <div class="search-ride-card">
+
+
+                        <!-- MATCH HEADER -->
+
+                        <div class="match-badge">
+
+
+                            <div>
+
+                                {% if ride.match_score == 100 %}
+
+                                    🟢 Exact Match
+
+                                {% elif ride.match_score == 70 %}
+
+                                    🟡 Same Starting Location
+
+                                {% else %}
+
+                                    🟡 Same Destination
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <span>
+
+                                {{ ride.match_score }}% Match
+
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- RIDE ROUTE -->
+
+                        <div class="ride-route-display">
+
+                            <div class="location-point">
+
+                                <span class="route-dot">
+                                    ●
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        PICKUP
+                                    </small>
+
+                                    <h2>
+                                        {{ ride.from_location }}
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="route-line">
+                            </div>
+
+
+
+                            <div class="location-point">
+
+                                <span class="route-dot">
+                                    ●
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        DROP-OFF
+                                    </small>
+
+                                    <h2>
+                                        {{ ride.to_location }}
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RIDE INFORMATION -->
+
+                        <div class="ride-result-info">
+
+
+                            <!-- DRIVER -->
+
+                            <div class="result-info-item">
+
+                                <span>
+                                    👤 Driver
+                                </span>
+
+                                <strong>
+                                    {{ ride.name }}
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- DATE -->
+
+                            <div class="result-info-item">
+
+                                <span>
+                                    📅 Date
+                                </span>
+
+                                <strong>
+                                    {{ ride.travel_date }}
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- TIME -->
+
+                            <div class="result-info-item">
+
+                                <span>
+                                    🕐 Departure
+                                </span>
+
+                                <strong>
+                                    {{ ride.travel_time }}
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- SEATS -->
+
+                            <div class="result-info-item">
+
+                                <span>
+                                    💺 Available Seats
+                                </span>
+
+                                <strong>
+                                    {{ ride.available_seats }}
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- PRICE -->
+
+                            <div class="result-info-item">
+
+                                <span>
+                                    💰 Price / Seat
+                                </span>
+
+                                <strong class="ride-price">
+
+                                    ₹{{ ride.price }}
+
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- ACTION -->
+
+                        <div class="ride-result-action">
+
+
+                            <div>
+
+                                <p>
+                                    Traveling on this route?
+                                </p>
+
+                                <small>
+                                    Check the ride details
+                                    and reserve your seat.
+                                </small>
+
+                            </div>
+
+
+                            <a
+                                href="{{ url_for(
+                                    'ride_details',
+                                    ride_id=ride.id
+                                ) }}"
+                                class="btn btn-primary">
+
+                                View Ride →
+
+                            </a>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- NO RESULTS -->
+
+                <div class="no-results">
+
+
+                    <div class="no-results-icon">
+                        🔍
+                    </div>
+
+
+                    <h2>
+                        No rides found
+                    </h2>
+
+
+                    <p>
+
+                        We couldn't find any available
+                        rides matching your search.
+
+                    </p>
+
+
+                    <p>
+
+                        Try changing your locations
+                        or selecting another date.
+
+                    </p>
+
+
+                    <a href="/find-ride"
+                       class="btn btn-primary">
+
+                        Search Again →
+
+                    </a>
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

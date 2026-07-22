@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Rides | RideShareX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+            Ride<span>ShareX</span>
+        </a>
+
+        <div class="nav-actions">
+
+            <a href="/dashboard"
+               class="back-home">
+
+                Dashboard
+
+            </a>
+
+            <a href="/logout"
+               class="btn btn-primary">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="dashboard-section">
+
+    <div class="dashboard-container">
+
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <p class="dashboard-label">
+                    RIDESHAREX
+                </p>
+
+                <h1>
+                    My Rides
+                </h1>
+
+                <p>
+                    Manage the rides you offered
+                    and joined.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIDES OFFERED -->
+
+        <section class="my-rides-section">
+
+            <h2>
+                🚗 Rides I Offered
+            </h2>
+
+
+            {% if offered_rides %}
+
+                <div class="rides-list">
+
+                    {% for ride in offered_rides %}
+
+                    <div class="ride-card">
+
+
+                        <div class="ride-route">
+
+                            <h3>
+
+                                {{ ride.from_location }}
+
+                                →
+
+                                {{ ride.to_location }}
+
+                            </h3>
+
+                        </div>
+
+
+                        <div class="ride-info">
+
+                            <p>
+                                📅
+                                {{ ride.travel_date }}
+                            </p>
+
+                            <p>
+                                🕐
+                                {{ ride.travel_time }}
+                            </p>
+
+                            <p>
+                                💺
+                                {{ ride.available_seats }}
+                                seats available
+                            </p>
+
+                            <p>
+                                💰
+                                ₹{{ ride.price }}
+                            </p>
+
+                        </div>
+
+
+                        <a href="{{ url_for(
+                            'ride_details',
+                            ride_id=ride.id
+                        ) }}"
+                           class="btn btn-primary">
+
+                            View Ride →
+
+                        </a>
+
+                        <form
+                            action="{{ url_for(
+                                'cancel_ride',
+                                ride_id=ride.id
+                            ) }}"
+                            method="POST"
+                            onsubmit="return confirm(
+                                'Are you sure you want to cancel this ride?'
+                            );">
+
+                            <button
+                                type="submit"
+                                class="btn btn-danger">
+
+                                Cancel Ride
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div class="dashboard-icon">
+                        🚗
+                    </div>
+
+                    <h3>
+                        You haven't offered
+                        any rides yet.
+                    </h3>
+
+                    <p>
+                        Have an empty seat?
+                        Share your journey with others.
+                    </p>
+
+                    <a href="/offer-ride"
+                       class="btn btn-primary">
+
+                        Offer a Ride →
+
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+
+        <!-- RIDES JOINED -->
+
+        <section class="my-rides-section">
+
+            <h2>
+                🧑‍🤝‍🧑 Rides I Joined
+            </h2>
+
+
+            {% if joined_rides %}
+
+                <div class="rides-list">
+
+                    {% for ride in joined_rides %}
+
+                    <div class="ride-card">
+
+
+                        <div class="ride-route">
+
+                            <h3>
+
+                                {{ ride.from_location }}
+
+                                →
+
+                                {{ ride.to_location }}
+
+                            </h3>
+
+                        </div>
+
+
+                        <div class="ride-info">
+
+                            <p>
+                                📅
+                                {{ ride.travel_date }}
+                            </p>
+
+                            <p>
+                                🕐
+                                {{ ride.travel_time }}
+                            </p>
+
+                            <p>
+                                👤 Driver:
+                                {{ ride.driver_name }}
+                            </p>
+
+                            <p>
+                                💺 Seats booked:
+                                {{ ride.seats_booked }}
+                            </p>
+
+                        </div>
+
+
+                        <a href="{{ url_for(
+                            'ride_details',
+                            ride_id=ride.id
+                        ) }}"
+                           class="btn btn-primary">
+
+                            View Ride →
+
+                        </a>
+                        <form
+                            action="{{ url_for(
+                                'cancel_booking',
+                                ride_id=ride.id
+                            ) }}"
+                            method="POST"
+                            onsubmit="return confirm(
+                                'Are you sure you want to cancel this booking?'
+                            );">
+
+                            <button
+                                type="submit"
+                                class="btn btn-danger">
+
+                                Cancel Booking
+
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <div class="dashboard-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        You haven't joined
+                        any rides yet.
+                    </h3>
+
+                    <p>
+                        Find people traveling
+                        on your route.
+                    </p>
+
+                    <a href="/find-ride"
+                       class="btn btn-primary">
+
+                        Find a Ride →
+
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+</body>
+
+</html>

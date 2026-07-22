@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Offer a Ride | RideShareX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+                Ride<span>ShareX</span>
+            </a>
+
+            <div class="nav-actions">
+
+                <a href="/dashboard"
+                   class="back-home">
+
+                    Dashboard
+
+                </a>
+
+                <a href="/logout"
+                   class="btn btn-primary">
+
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- OFFER RIDE -->
+
+    <main class="offer-ride-section">
+
+        <div class="offer-ride-container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-heading">
+
+                <p class="dashboard-label">
+                    OFFER A RIDE
+                </p>
+
+                <h1>
+                    Share your journey.
+                </h1>
+
+                <p>
+                    Have an empty seat? Share your ride,
+                    meet fellow travelers and reduce your
+                    travel costs.
+                </p>
+
+            </div>
+
+
+
+            <!-- FORM CARD -->
+
+            <div class="offer-card">
+
+
+                <form
+                    action="/offer-ride"
+                    method="POST"
+                    class="offer-form">
+
+
+                    <!-- ROUTE -->
+
+                    <div class="form-section-title">
+
+                        <span>01</span>
+
+                        <h2>
+                            Your Route
+                        </h2>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="from_location">
+                                Leaving From
+                            </label>
+
+                            <input
+                                type="text"
+                                id="from_location"
+                                name="from_location"
+                                placeholder="e.g. Kondapur"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="to_location">
+                                Going To
+                            </label>
+
+                            <input
+                                type="text"
+                                id="to_location"
+                                name="to_location"
+                                placeholder="e.g. Dilsukhnagar"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- DATE & TIME -->
+
+                    <div class="form-section-title">
+
+                        <span>02</span>
+
+                        <h2>
+                            Journey Details
+                        </h2>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="travel_date">
+                                Travel Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="travel_date"
+                                name="travel_date"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="travel_time">
+                                Departure Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="travel_time"
+                                name="travel_time"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- SEATS & PRICE -->
+
+                    <div class="form-section-title">
+
+                        <span>03</span>
+
+                        <h2>
+                            Ride Information
+                        </h2>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="available_seats">
+                                Available Seats
+                            </label>
+
+                            <select
+                                id="available_seats"
+                                name="available_seats"
+                                required>
+
+                                <option value="">
+                                    Select seats
+                                </option>
+
+                                <option value="1">
+                                    1 Seat
+                                </option>
+
+                                <option value="2">
+                                    2 Seats
+                                </option>
+
+                                <option value="3">
+                                    3 Seats
+                                </option>
+
+                                <option value="4">
+                                    4 Seats
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="price">
+                                Price Per Passenger (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="price"
+                                name="price"
+                                placeholder="e.g. 150"
+                                min="0"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- VEHICLE -->
+
+                    <div class="form-group">
+
+                        <label for="vehicle_details">
+                            Vehicle Details
+                        </label>
+
+                        <input
+                            type="text"
+                            id="vehicle_details"
+                            name="vehicle_details"
+                            placeholder="e.g. White Hyundai i20"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary offer-submit-btn">
+
+                        🚗 Publish My Ride →
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

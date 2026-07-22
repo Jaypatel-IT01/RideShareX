@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Find a Ride | RideShareX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+            Ride<span>ShareX</span>
+        </a>
+
+        <div class="nav-actions">
+
+            <a href="/dashboard"
+               class="back-home">
+
+                Dashboard
+
+            </a>
+
+            <a href="/logout"
+               class="btn btn-primary">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="find-ride-section">
+
+    <div class="find-ride-container">
+
+
+        <div class="page-heading">
+
+            <p class="dashboard-label">
+                FIND A RIDE
+            </p>
+
+            <h1>
+                Where are you going?
+            </h1>
+
+            <p>
+                Find people traveling on the same route
+                and share your journey.
+            </p>
+
+        </div>
+
+
+
+        <!-- SEARCH CARD -->
+
+        <div class="search-card">
+
+            <form
+                action="/search-rides"
+                method="GET"
+                class="ride-search-form">
+
+
+                <!-- FROM -->
+
+                <div class="search-field location-field">
+
+                    <label for="from_location">
+                        From
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span>📍</span>
+
+                        <input
+                            type="text"
+                            id="from_location"
+                            name="from_location"
+                            placeholder="Enter starting location"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+                    <div
+                        id="from-suggestions"
+                        class="location-suggestions">
+                    </div>
+
+                </div>
+
+
+
+                <!-- SWAP -->
+
+                <button
+                    type="button"
+                    class="swap-btn"
+                    onclick="swapLocations()">
+
+                    ⇄
+
+                </button>
+
+
+
+                <!-- TO -->
+
+                <div class="search-field location-field">
+
+                    <label for="to_location">
+                        To
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span>📍</span>
+
+                        <input
+                            type="text"
+                            id="to_location"
+                            name="to_location"
+                            placeholder="Enter destination"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+                    <div
+                        id="to-suggestions"
+                        class="location-suggestions">
+                    </div>
+
+                </div>
+
+
+
+                <!-- DATE -->
+
+                <div class="search-field">
+
+                    <label for="travel_date">
+                        Travel Date
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span>
+                            📅
+                        </span>
+
+                        <input
+                            type="date"
+                            id="travel_date"
+                            name="travel_date"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SEARCH -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary search-btn">
+
+                    Search Rides →
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- QUICK SEARCH -->
+
+        <div class="quick-search">
+
+            <p>
+                Popular routes
+            </p>
+
+            <div class="quick-route-list">
+
+                <button
+                    type="button"
+                    onclick="setRoute(
+                        'Kondapur',
+                        'Dilsukhnagar'
+                    )">
+
+                    Kondapur → Dilsukhnagar
+
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="setRoute(
+                        'Gachibowli',
+                        'Hitech City'
+                    )">
+
+                    Gachibowli → Hitech City
+
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="setRoute(
+                        'Madhapur',
+                        'Secunderabad'
+                    )">
+
+                    Madhapur → Secunderabad
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+function swapLocations() {
+
+    let from =
+        document.getElementById(
+            "from_location"
+        );
+
+    let to =
+        document.getElementById(
+            "to_location"
+        );
+
+
+    let temp = from.value;
+
+    from.value = to.value;
+
+    to.value = temp;
+
+}
+
+
+
+function setRoute(fromLocation, toLocation) {
+
+    document.getElementById(
+        "from_location"
+    ).value = fromLocation;
+
+
+    document.getElementById(
+        "to_location"
+    ).value = toLocation;
+
+}
+
+const locations = [
+
+    "Kondapur",
+
+    "Kondapur Metro Station",
+
+    "Kondapur, Hyderabad",
+
+    "Gachibowli",
+
+    "Gachibowli Stadium",
+
+    "Hitech City",
+
+    "Hitech City Metro Station",
+
+    "Madhapur",
+
+    "Madhapur Metro Station",
+
+    "Dilsukhnagar",
+
+    "Dilsukhnagar Metro Station",
+
+    "Secunderabad",
+
+    "Secunderabad Railway Station",
+
+    "Banjara Hills",
+
+    "Jubilee Hills",
+
+    "Mehdipatnam",
+
+    "Kukatpally",
+
+    "Kukatpally Metro Station",
+
+    "Ameerpet",
+
+    "Ameerpet Metro Station",
+
+    "Begumpet",
+
+    "LB Nagar",
+
+    "LB Nagar Metro Station"
+
+];
+
+function setupLocationSearch(
+    inputId,
+    suggestionsId
+) {
+
+    const input =
+        document.getElementById(inputId);
+
+    const suggestions =
+        document.getElementById(
+            suggestionsId
+        );
+
+
+    input.addEventListener(
+        "input",
+        function () {
+
+            const value =
+                input.value
+                .toLowerCase()
+                .trim();
+
+
+            suggestions.innerHTML = "";
+
+
+            if (value.length < 2) {
+
+                suggestions.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const filteredLocations =
+                locations.filter(
+                    function(location) {
+
+                        return location
+                            .toLowerCase()
+                            .includes(value);
+
+                    }
+                );
+
+
+            if (
+                filteredLocations.length === 0
+            ) {
+
+                suggestions.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            filteredLocations
+                .slice(0, 5)
+                .forEach(
+                    function(location) {
+
+                        const item =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        item.className =
+                            "location-suggestion";
+
+
+                        item.innerHTML =
+                            "📍 " + location;
+
+
+                        item.addEventListener(
+                            "click",
+                            function() {
+
+                                input.value =
+                                    location;
+
+                                suggestions.innerHTML =
+                                    "";
+
+                                suggestions.style.display =
+                                    "none";
+
+                            }
+                        );
+
+
+                        suggestions.appendChild(
+                            item
+                        );
+
+                    }
+                );
+
+
+            suggestions.style.display =
+                "block";
+
+        }
+    );
+
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                !input.contains(event.target) &&
+                !suggestions.contains(event.target)
+            ) {
+
+                suggestions.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+}
+
+
+
+setupLocationSearch(
+    "from_location",
+    "from-suggestions"
+);
+
+
+setupLocationSearch(
+    "to_location",
+    "to-suggestions"
+);
+
+</script>
+
+
+</body>
+
+</html>

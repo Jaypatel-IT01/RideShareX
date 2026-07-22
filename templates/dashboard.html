@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | RideShareX</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="/" class="logo">
+                Ride<span>ShareX</span>
+            </a>
+
+
+            <a href="/logout"
+               class="btn btn-primary">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- DASHBOARD -->
+
+    <main class="dashboard-section">
+
+        <div class="dashboard-container">
+
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        RIDESHAREX DASHBOARD
+                    </p>
+
+                    <h1>
+                        Welcome, {{ user_name }}! 👋
+                    </h1>
+
+                    <p>
+                        What would you like to do today?
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACTION CARDS -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- FIND RIDE -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        🔍
+                    </div>
+
+                    <h2>
+                        Find a Ride
+                    </h2>
+
+                    <p>
+                        Find people traveling on your route
+                        and share your journey.
+                    </p>
+
+                    <a href="/find-ride"
+                        class="dashboard-btn">
+
+                        Find a Ride →
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- OFFER RIDE -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        🚗
+                    </div>
+
+                    <h2>
+                        Offer a Ride
+                    </h2>
+
+                    <p>
+                        Have an empty seat?
+                        Share your ride and save travel costs.
+                    </p>
+
+                    <a href="/offer-ride"
+                        class="dashboard-btn">
+
+                        Offer a Ride →
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- MY RIDES -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        🛣️
+                    </div>
+
+                    <h2>
+                        My Rides
+                    </h2>
+
+                    <p>
+                        View your upcoming and previous rides.
+                    </p>
+
+                    <a href="/my-rides"
+                        class="dashboard-btn">
+
+                        View My Rides →
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- PROFILE -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+                        👤
+                    </div>
+
+                    <h2>
+                        My Profile
+                    </h2>
+
+                    <p>
+                        Manage your personal information
+                        and account settings.
+                    </p>
+
+                   <a href="/profile"
+                        class="dashboard-btn">
+
+                        View Profile →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>
