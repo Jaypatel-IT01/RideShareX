@@ -5645,3 +5645,31 @@ footer {
     }
 }
 
+.mobile-login,
+.mobile-signup {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .nav-buttons {
+        display: none;
+    }
+
+    .mobile-login,
+    .mobile-signup {
+        display: block;
+    }
+
+    .mobile-login {
+        margin-top: 20px;
+    }
+
+    .mobile-signup {
+        background: #00a878;
+        color: white !important;
+        padding: 12px 25px;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+}
